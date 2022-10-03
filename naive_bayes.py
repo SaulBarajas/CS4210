@@ -78,8 +78,12 @@ print ("Day".ljust(15) + "Outlook".ljust(15) + "Temperature".ljust(15) + "Humidi
 #use your test samples to make probabilistic predictions. For instance: clf.predict_proba([[3, 1, 2, 1]])[0]
 #--> add your Python code here
 for i,test in enumerate(dbTestingTransformed):
-    print(dbTesting[i])
-    print(clf.predict_proba([test])[0])
+    if clf.predict_proba([test])[0][0]>clf.predict_proba([test])[0][1] and clf.predict_proba([test])[0][0]>.75:
+        print (f"{dbTesting[i][0]}".ljust(15) + f"{dbTesting[i][1]}".ljust(15) + f"{dbTesting[i][2]}".ljust(15) + f"{dbTesting[i][3]}".ljust(15) + f"{dbTesting[i][4]}".ljust(15) + "Yes".ljust(15) + f"{clf.predict_proba([test])[0][0]}".ljust(15))
+    if clf.predict_proba([test])[0][1]>clf.predict_proba([test])[0][0] and clf.predict_proba([test])[0][1]>.75:
+        print (f"{dbTesting[i][0]}".ljust(15) + f"{dbTesting[i][1]}".ljust(15) + f"{dbTesting[i][2]}".ljust(15) + f"{dbTesting[i][3]}".ljust(15) + f"{dbTesting[i][4]}".ljust(15) + "No".ljust(15) + f"{clf.predict_proba([test])[0][1]}".ljust(15))
+
+
 
 
 
